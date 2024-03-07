@@ -17,8 +17,8 @@ public class UserDao {
 //	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 //	save
-	public User saveDao(User movie) {
-		return userRepo.save(movie);
+	public User saveDao(User user) {
+		return userRepo.save(user);
 	}
 	
 //	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -57,6 +57,9 @@ public class UserDao {
 		User m = db.get();
 		if (db.isPresent()) {
 			
+			if (user.getImage() == null) {
+				user.setImage(m.getImage());
+			}
 			if (user.getFirstName() == null) {
 				user.setFirstName(m.getFirstName());
 			}

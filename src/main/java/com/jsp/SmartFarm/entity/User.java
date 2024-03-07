@@ -36,4 +36,9 @@ public class User {
 	private UserType userType;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Image image;
+	
+	
 }
