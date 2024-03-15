@@ -71,9 +71,7 @@ public class ImageDao {
 	public Image deleteDao(int userId) {
 		User db = userDao.fetchDao(userId);
 		int imgId = db.getImage().getId();
-		
 		db.setImage(null);
-		
 		userDao.updateDao(db);
 		return deleteImageById(imgId);
 	}
