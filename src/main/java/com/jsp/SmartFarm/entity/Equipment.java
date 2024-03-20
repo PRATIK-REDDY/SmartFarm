@@ -1,21 +1,27 @@
 package com.jsp.SmartFarm.entity;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
 @Entity
-public class Comments {
-	
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Equipment {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String comment;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private User user;
+	private String name;
+	private int quantity;
+	private int costperhours;
+	@ManyToOne
+	private User user;		
 }

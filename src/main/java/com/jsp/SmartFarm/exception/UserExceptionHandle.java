@@ -34,6 +34,17 @@ public class UserExceptionHandle extends ResponseEntityExceptionHandler {
 
 		return new ResponseEntity<ResponseStructure<String>>(m, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(UserIdNotFound.class)
+	public ResponseEntity<ResponseStructure<String>> userIdNotFound(UserIdNotFound userIdNotFound) {
+
+		ResponseStructure<String> m = new ResponseStructure<String>();
+		m.setData("not found for User id");
+		m.setMessage(userIdNotFound.getMessage());
+		m.setStatus(HttpStatus.NOT_FOUND.value());
+
+		return new ResponseEntity<ResponseStructure<String>>(m, HttpStatus.NOT_FOUND);
+	}
 
 	@ExceptionHandler(EmailNotSendException.class)
 	public ResponseEntity<ResponseStructure<String>> emailNotSend(EmailNotSendException emailNotSendException) {

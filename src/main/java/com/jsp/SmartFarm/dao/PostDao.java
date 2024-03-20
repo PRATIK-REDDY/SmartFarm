@@ -28,10 +28,12 @@ public class PostDao {
 	@Autowired
 	private ImageDao imageDao;
 	
+//	save Post
 	public Post saveDao(Post post) {
 		return postRepo.save(post);
 	}
 	
+//	fetch Post
 	public Post fetchPostDao(int id) {
 		Optional<Post> db = postRepo.findById(id);
 
@@ -42,6 +44,7 @@ public class PostDao {
 		}
 	}
 	
+//	delete Post
 	public Post deletePostDao(int id) {
 		List<User> users = userRepo.findAll();
 		
@@ -61,5 +64,31 @@ public class PostDao {
 			}
 		}
 		return null;
+	}
+	
+//	update Post
+	public Post updatePostDao(Post post) {
+		Optional<Post> db = postRepo.findById(post.getId());
+		
+		if (db.isPresent()) {
+			Post data = db.get();
+			
+			if (post.getComments() == null) {
+				post.setComments(data.getComments());
+			}
+			if(post.getCaption()==null) {
+				post.setCaption(data.getCaption());
+			}
+			if(post.getLocation()==null) {
+				post.setLocation(data.getLocation());
+			}
+			if(post.getDateTime()==null) {
+				post.setDateTime(data.getDateTime());
+			}
+			
+			return postRepo.save(data);
+		} else {
+			return null;
+		}
 	}
 }
