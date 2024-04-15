@@ -1,8 +1,7 @@
 package com.jsp.SmartFarm.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,13 +11,14 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Comments {
-	
+public class PaymentHistory {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String comment;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
+	private String mode;
+	private LocalDateTime paymentTime;
+	private double amount;
+	@ManyToOne
 	private User user;
 }
